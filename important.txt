@@ -1,0 +1,6 @@
+directories "php/forum/index.php";
+
+create a database name "idiscuss"
+create a table name "categories"
+create a table name "threads"
+create a table name "comments"
