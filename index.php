@@ -50,7 +50,7 @@
     </div>
 
     <div class="container">
-    <h2 class="my-3 text-center">iDiscuss - Browse Categories</h2>
+    <h2 class="my-3 text-center">Ask.com - Browse Categories</h2>
     <div class="row">
   <?php 
     include "partials/_dbconnect.php";

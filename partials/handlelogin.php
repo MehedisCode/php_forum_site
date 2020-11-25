@@ -16,7 +16,7 @@
                 $_SESSION['sno'] = $row['user_id'];
                 $_SESSION['username'] = $username;
                 echo "Your are logged in $username";
-                header("location: /php/forum/index.php");
+                header("location: /index.php");
                 exit();
             }else{
                     // password not matching
@@ -25,7 +25,7 @@
         
         }else{
             echo "username not find";
-            header("location: /php/forum/index.php");
+            header("location: /index.php");
         }
 
     }

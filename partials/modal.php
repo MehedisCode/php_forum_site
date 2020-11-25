@@ -14,7 +14,7 @@
             <div class="modal-body">
             <!-- You may need to change it  action="/php/forum/partials/handlesignup.php"-->
 
-            <form action="/php/forum/partials/handlelogin.php" method="post">
+            <form action="/partials/handlelogin.php" method="post">
                 <div class="form-group">
                   <label for="">Username</label>
                   <input type="text" class="form-control" name="lusername" id="" aria-describedby="emailHelpId" placeholder="">
@@ -45,7 +45,7 @@
             </div>
             <div class="modal-body">
             <!-- You may need to change it  action="/php/forum/partials/handlesignup.php"-->
-            <form action="/php/forum/partials/handlesignup.php" method="post">
+            <form action="/partials/handlesignup.php" method="post">
                 <div class="form-group">
                   <label for="">Username</label>
                   <input type="text" class="form-control" name="susername" id="" aria-describedby="emailHelpId" placeholder="">

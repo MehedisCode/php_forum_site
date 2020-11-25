@@ -11,7 +11,7 @@
         
         if($num_row > 0){
             $usrErr =  "username already exist";
-            header("location: /php/forum/index.php?signupsuccess=false&error=$usrErr");
+            header("location: /index.php?signupsuccess=false&error=$usrErr");
 
         }else{
             // password matching
@@ -21,11 +21,11 @@
                 $sql = "INSERT INTO `users` (`user_id`, `user_name`, `password`, `time`) VALUES (NULL, '$username', '$hash', current_timestamp());";
             $result = mysqli_query($conn, $sql);
             // you may need to change it 
-            header("location: /php/forum/index.php?signupsuccess=true");
+            header("location: /index.php?signupsuccess=true");
 
         }else{
             $err = "password dose not matching";
-            header("location: /php/forum/index.php?signupsuccess=false&error=$err");
+            header("location: /index.php?signupsuccess=false&error=$err");
         }    
     }
 }

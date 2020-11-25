@@ -3,7 +3,7 @@ session_start();
 include "modal.php";
 echo '
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="index.php">iDiscuss</a>
+        <a class="navbar-brand" href="index.php">Ask.com</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@ echo '
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/php/forum/index.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
@@ -30,7 +30,7 @@ echo '
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 <h4 class="mb-0 mx-3"><span class="badge badge-danger">'. $_SESSION['username'] .'</span></h4>
-                <a name="" id="" class="btn btn-success mr-3" href="/php/forum/logout.php" role="button">Log out</a>
+                <a name="" id="" class="btn btn-success mr-3" href="/logout.php" role="button">Log out</a>
                 </form>';
             }else{
                 echo '<form class="form-inline my-2 my-lg-0">
