@@ -1,9 +1,10 @@
 <?php 
 session_start();
+include "_dbconnect.php";
 include "modal.php";
 echo '
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="index.php">iDiscuss</a>
+        <a class="navbar-brand" href="index.php">Ask.com</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,11 +15,15 @@ echo '
                     <a class="nav-link" href="/php/forum/index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Action 1</a>
-                        <a class="dropdown-item" href="#">Action 2</a>
-                    </div>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">';
+                $sql ='SELECT * FROM `categories`';
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)){
+                    echo '<a class="dropdown-item" href="http://localhost/php/forum/threadlist.php?catno='.$row['category_no'].'">'.$row['category_name'].'</a>';
+                }
+
+                    echo '</div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
@@ -26,8 +31,8 @@ echo '
             </ul>';
 
             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-            echo '<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            echo '<form class="form-inline my-2 my-lg-0" method="get" action="search.php">
+                <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 <h4 class="mb-0 mx-3"><span class="badge badge-danger">'. $_SESSION['username'] .'</span></h4>
                 <a name="" id="" class="btn btn-success mr-3" href="/php/forum/logout.php" role="button">Log out</a>

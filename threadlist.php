@@ -9,18 +9,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>iDiscuss -coding forum</title>
-    <style>
-        #uname {
-            display: block;
-            width: 100%;
-            margin-bottom: 5px;
-        }
-    </style>
+    <title>Ask.com -coding forum</title>
 </head>
 
 <body>
-<?php 
+<?php
         $showAlert = false;
          $id = $_GET['catno'];
          if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -112,6 +105,10 @@
                 $noresult = false;
                 $name = $row['thread_title'];
                 $description = $row['thread_description'];
+                $description = str_replace("<", "&lt", $description);
+                $description = str_replace(">", "&gt", $description);
+                $name = str_replace("<", "&lt", $name);
+                $name = str_replace(">", "&gt", $name);
                 $no = $row['thread_id'];
                 $sno = $row['thread_user_id'];
                 // users database info 
@@ -119,14 +116,15 @@
                 $result2 = mysqli_query($conn, $sql2);
                 $row2 = mysqli_fetch_assoc($result2);
                 echo '<div class="media my-3">
-                <a class="d-flex mt-2 mr-3" href="#">
+                <a class="d-flex mr-3" href="#">
                     <img src="idiscuss img/user.png" width="65px" alt="">
                 </a>
                 <div class="media-body">
-                    <b id="uname"> '. $row2['user_name'] .'</b>
+                    
                     <h5><a class="text-dark" href="threads.php?threadid='. $no .'">' . $name . '</a></h5>
                     ' . $description . '
                 </div>
+                <p>Asked By : <b> '. $row2['user_name'] .'</b></b>
                 </div><hr>';
                 };
 

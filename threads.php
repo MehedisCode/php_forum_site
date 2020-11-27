@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>iDiscuss -coding forum</title>
+    <title>Ask.com -coding forum</title>
 </head>
 
 <body>
     <?php 
-
+include "partials/_dbconnect.php";
 require "partials/_navbar.php";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -37,7 +37,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $name = $row['thread_title'];
         $description = $row['thread_description'];
         $thread_user_id = $row['thread_user_id'];
-  
+        
+        $sql2 = "SELECT * FROM `users` WHERE user_id='$thread_user_id'";
+        $result2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_assoc($result2);
 
         echo '<div class="container mt-3">
         <div class="jumbotron">
@@ -45,8 +48,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <p class="lead"> '. $description .'</p>
             <hr class="my-2">
             
-            <p class="lead">
-                Posted by Mehedi
+            <p class="">
+                Posted by:<b> '.$row2['user_name'].'</b>
             </p>
         </div>
     </div>';
@@ -78,6 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <!-- fetch from comments  -->
           <?php 
                 include "partials/_dbconnect.php";
+
                 $cat = $_GET['threadid'];
                 $sql = 'SELECT * FROM `comments` WHERE thread_id='. $cat;
                 $result = mysqli_query($conn, $sql);
@@ -86,6 +90,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $noresult = false;
                 $name = $row['comment_id'];
                 $description = $row['comment_content'];
+                $description = str_replace(">", "&gt", $description);
+                $description = str_replace("<", "&lt", $description);
                 $no = $row['thread_id'];
                 $comment_time = $row['comment_time'];
                 $comment_by = $row['comment_by'];
@@ -99,10 +105,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <img src="idiscuss img/user.png" width="50px" alt="">
                 </a>
                 <div class="media-body">
-                <p class="font-weight-bold mb-0">'. $row2['user_name'] .' at '. $comment_time .'</p>
+                <p class="font-weight-bold mb-0">'. $row2['user_name'] .' </p>
                     ' . $description . '
                 </div>
-                </div>';
+                <p>at '. $comment_time .'</p>
+                </div><hr>';
                 };
 
                 if($noresult){

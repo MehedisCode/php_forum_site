@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>iDiscuss -coding forum</title>
+    <title>Ask.com -coding forum</title>
     <style>
         
     </style>
@@ -18,6 +18,8 @@
 
 <body>
     <?php 
+    include "partials/_dbconnect.php";
+
   require "partials/_navbar.php";?>
 
     <div class="d-flex justify-content-center">
@@ -50,10 +52,9 @@
     </div>
 
     <div class="container">
-    <h2 class="my-3 text-center">iDiscuss - Browse Categories</h2>
+    <h2 class="my-3 text-center">Ask.com - Browse Categories</h2>
     <div class="row">
   <?php 
-    include "partials/_dbconnect.php";
 
     $sql = 'SELECT * FROM `categories`';
     $result = mysqli_query($conn, $sql);
